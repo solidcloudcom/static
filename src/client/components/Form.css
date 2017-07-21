@@ -1,0 +1,8 @@
+.demands-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 80%;
+}
