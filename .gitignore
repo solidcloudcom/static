@@ -3,4 +3,5 @@
 node_modules
 *.bundle.js
 public
+src/server/config.js
 *.log
