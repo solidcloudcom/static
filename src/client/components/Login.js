@@ -56,6 +56,7 @@ class Login extends Component {
                             label='submit'
                         />
                         <a href="/auth/vkontakte">Sign up with VK</a>
+                        <a href="/auth/facebook">Sign up with FB</a>
                     </Paper>
                 </form>
             </section>

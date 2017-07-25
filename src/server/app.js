@@ -9,11 +9,12 @@ const session = require('express-session');
 const mongoose = require('mongoose');
 const config = require('./config');
 
-const VKstrategy = require('./vkauth');
+const VKstrategy = require('./oauth/vkauth');
+const FBStrategy = require('./oauth/fbauth');
 const User = require('./models/User');
 
 
-mongoose.connect(config.get('MONGO_PATH'), { useMongoClient: true });
+mongoose.connect('mongodb://<blank>@ds155582.mlab.com:55582/scrap-n-nofity', { useMongoClient: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'DATABASE ERROR:'));
 db.once('open', console.info.bind(console, 'DB CONNECTED'));
@@ -27,14 +28,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../../public')));
 app.use(session({
-    secret: config.get('secret'),
+    secret: 'keyboard cat',
     saveUninitialized: true,
     resave: true,
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(VKstrategy);
+// passport.use(VKstrategy);
+passport.use(FBStrategy);
 
 passport.serializeUser((user, done) => {
     done(null, user.id);
@@ -60,10 +62,10 @@ app.use((err, req, res, next) => {
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, '/views'));
 
-app.listen(config.get('PORT'), (err) => {
+app.listen(3000, (err) => {
     if (err) {
         console.error('Something went wrong', err);
     } else {
-        console.log(`Listening on port: ${app.get('port')}`);
+        console.log('Listening on port 3000');
     }
 });

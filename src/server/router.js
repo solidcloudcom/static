@@ -3,15 +3,22 @@ const passport = require('passport');
 
 const indexController = require('./controllers/indexController');
 
-router.get('/auth/vkontakte', passport.authenticate('vkontakte'));
-
 router.get('/login', (req, res) => {
-	res.render('index');
+    res.render('index');
 });
 
+router.get('/auth/vkontakte', passport.authenticate('vkontakte'));
 router.get('/auth/vkontakte/callback',
     passport.authenticate('vkontakte', {
-        successRedirect: '/',
+        successRedirect: '/?OKK',
+        failureRedirect: '/login',
+    })
+);
+
+router.get('/auth/facebook', passport.authenticate('facebook'));
+router.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/?OKK',
         failureRedirect: '/login',
     })
 );

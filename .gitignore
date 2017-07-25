@@ -1,6 +1,6 @@
 .idea
 .DS_Store
 node_modules
+*.bundle.js
 public
 *.log
-src/server/config.js
