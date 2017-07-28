@@ -5,13 +5,13 @@ import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 import AppBar from 'material-ui/AppBar';
+import UserBar from './UserBar';
 
 import './App.css';
 
 injectTapEventPlugin();
 
 class App extends Component {
-
     getChildContext() {
         return { muiTheme: getMuiTheme(baseTheme) };
     }
@@ -19,7 +19,11 @@ class App extends Component {
     render() {
         return (
             <main>
-                <AppBar className="app-bar" title="Make your car search easier!" />
+                <AppBar
+                    className="app-bar"
+                    title="TARARARAM"
+                    iconElementRight={ <UserBar /> }
+                />
                 { this.props.children }
             </main>
         );

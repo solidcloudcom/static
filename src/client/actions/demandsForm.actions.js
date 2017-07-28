@@ -3,7 +3,7 @@ import {
     CHANGE_AUTO_MODELS,
     REQUEST_AUTO_MAKERS,
     REQUEST_AUTO_MODELS,
-} from '../constants/demandsForm';
+} from '../constants/demandsForm.constants';
 
 export const changeAutoMakers = maker => ({
     type: CHANGE_AUTO_MAKERS,

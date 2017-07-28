@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import propTypes from 'prop-types';
 
 import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
+// import TextField from 'material-ui/TextField';
+// import RaisedButton from 'material-ui/RaisedButton';
+import FacebookIcon from 'react-icons/lib/fa/facebook';
+import VkontakteIcon from 'react-icons/lib/fa/vk';
 
 import './Login.css';
 
@@ -38,27 +40,14 @@ class Login extends Component {
     render() {
         return (
             <section className="login-form-container">
-                <form onSubmit={ this.handleSubmit }>
-                    <Paper className="login-form" zDepth={3}>
-                        <TextField
-                            floatingLabelText="Login"
-                            hintText="Enter your login"
-                            onChange={ this.handleLoginChange }
-                        />
-                        <TextField
-                            floatingLabelText="Password"
-                            hintText="Enter your password"
-                            type="password"
-                            onChange={ this.handlePasswordChange }
-                        />
-                        <RaisedButton
-                            type="submit"
-                            label='submit'
-                        />
-                        <a href="/auth/vkontakte">Sign up with VK</a>
-                        <a href="/auth/facebook">Sign up with FB</a>
-                    </Paper>
-                </form>
+                <Paper className="login-form" zDepth={3}>
+                    <a href="/auth/vkontakte">
+                        <VkontakteIcon color="grey" />
+                    </a>
+                    <a href="/auth/facebook">
+                        <FacebookIcon color="grey" />
+                    </a>
+                </Paper>
             </section>
         );
     }
@@ -67,3 +56,25 @@ class Login extends Component {
 Login.propTypes = {};
 
 export default Login;
+
+// <form onSubmit={ this.handleSubmit }>
+//     <Paper className="login-form" zDepth={3}>
+//         <TextField
+//             floatingLabelText="Login"
+//             hintText="Enter your login"
+//             onChange={ this.handleLoginChange }
+//         />
+//         <TextField
+//             floatingLabelText="Password"
+//             hintText="Enter your password"
+//             type="password"
+//             onChange={ this.handlePasswordChange }
+//         />
+//         <RaisedButton
+//             type="submit"
+//             label='submit'
+//         />
+//         <a href="/auth/vkontakte">Sign up with VK</a>
+//         <a href="/auth/facebook">Sign up with FB</a>
+//     </Paper>
+// </form>

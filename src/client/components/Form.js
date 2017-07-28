@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Paper from 'material-ui/Paper';
 
-import { requestAutoMakers, requestAutoModels } from '../actions/demandsForm';
+import { requestAutoMakers, requestAutoModels } from '../actions/demandsForm.actions';
 
 import FormSelectField from './FormSelectField';
 

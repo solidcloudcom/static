@@ -1,4 +1,4 @@
-import { CHANGE_AUTO_MAKERS, CHANGE_AUTO_MODELS } from '../constants/demandsForm';
+import { CHANGE_AUTO_MAKERS, CHANGE_AUTO_MODELS } from '../constants/demandsForm.constants';
 
 const initialState = {
     autoMakers: ['audi', 'bmw', 'nissan', 'toyota', 'mazda', 'reno'],

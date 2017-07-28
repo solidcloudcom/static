@@ -14,7 +14,7 @@ const strategy = new FBStrategy(
             upsert: true,
             new: true,
         };
-
+        console.log('PROFILE: ', profile);
         const updates = {
             id: profile.id,
             name: profile.displayName,

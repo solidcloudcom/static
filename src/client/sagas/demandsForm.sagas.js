@@ -1,7 +1,7 @@
 import { takeEvery, put, call, throttle } from 'redux-saga/effects';
 
-import { REQUEST_AUTO_MAKERS, REQUEST_AUTO_MODELS } from '../constants/demandsForm';
-import { changeAutoMakers, changeAutoModels } from '../actions/demandsForm';
+import { REQUEST_AUTO_MAKERS, REQUEST_AUTO_MODELS } from '../constants/demandsForm.constants';
+import { changeAutoMakers, changeAutoModels } from '../actions/demandsForm.actions';
 
 function* getAutoMakersExec(action) {
     try {
