@@ -32,6 +32,7 @@ const base = {
 
     output: {
         filename: 'bundle.min.js',
+        sourceMapFilename: 'bundle.min.js.map',
         path: path.join(__dirname, './public/js'),
     },
 
@@ -56,7 +57,7 @@ const base = {
 if (nodeEnv === 'production') {
     base.plugins = plugins;
 } else {
-    base.devtool = 'cheap-module-eval-source-map';
+    base.devtool = 'source-map';
 }
 
 module.exports = base;

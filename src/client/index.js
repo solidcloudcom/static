@@ -14,7 +14,7 @@ render(
         <BrowserRouter>
             <App>
                 <Switch>
-                    <Route exact path='/' render={ () => <h1>ROOT</h1> } />
+                    <Route exact path='/' render={ () => <h1>ROOOOOOT</h1> } />
                     <Route exact path='/login' component={ Login } />
                     <Route exact path='/form' component={ Form } />
                 </Switch>

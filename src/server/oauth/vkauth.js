@@ -13,7 +13,7 @@ const strategy = new VKStrategy(
             upsert: true,
             new: true,
         };
-        console.log(profile.photos[0].value);
+
         const updates = {
             id: profile.id,
             name: profile.displayName,

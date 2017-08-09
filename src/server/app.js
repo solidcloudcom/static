@@ -18,7 +18,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'DATABASE ERROR:'));
 db.once('open', console.info.bind(console, 'DB CONNECTED'));
 
-
+User.find({}, console.log);
 const app = express();
 
 app.use(logger('dev'));
