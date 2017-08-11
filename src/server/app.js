@@ -12,7 +12,6 @@ const config = require('./config');
 const Strategies = require('./oauth/index');
 const User = require('./models/User');
 
-
 mongoose.connect(config.get('MONGO_PATH'), { useMongoClient: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'DATABASE ERROR:'));
