@@ -1,6 +1,7 @@
-const FBStrategy = require('passport-facebook');
-const User = require('../models/User');
-const config = require('../config');
+import * as FBStrategy from 'passport-facebook';
+import User from '../models/User';
+import config from '../config';
+import { UserUpdates } from '../interfaces';
 
 const strategy = new FBStrategy(
     {
@@ -15,7 +16,7 @@ const strategy = new FBStrategy(
             new: true,
         };
 
-        const updates = {
+        const updates: UserUpdates = {
             id: profile.id,
             name: profile.displayName,
             avatar: profile.photos[0].value,
@@ -28,4 +29,4 @@ const strategy = new FBStrategy(
     }
 );
 
-module.exports = strategy;
+export default strategy;

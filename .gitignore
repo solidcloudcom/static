@@ -3,5 +3,6 @@
 node_modules
 *.bundle.js
 public
-src/server/config.js
+build
+src/server/config.ts
 *.log

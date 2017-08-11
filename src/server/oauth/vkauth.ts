@@ -1,6 +1,9 @@
-const VKStrategy = require('passport-vkontakte').Strategy;
-const User = require('../models/User');
-const config = require('../config');
+import * as passportVK from 'passport-vkontakte';
+import User from '../models/User';
+import config from '../config';
+import { UserUpdates } from '../interfaces';
+
+const VKStrategy = passportVK.Strategy;
 
 const strategy = new VKStrategy(
     {
@@ -14,7 +17,7 @@ const strategy = new VKStrategy(
             new: true,
         };
 
-        const updates = {
+        const updates: UserUpdates = {
             id: profile.id,
             name: profile.displayName,
             avatar: profile.photos[0].value,
@@ -27,4 +30,4 @@ const strategy = new VKStrategy(
     }
 );
 
-module.exports = strategy;
+export default strategy;

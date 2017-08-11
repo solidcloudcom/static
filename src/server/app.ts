@@ -7,67 +7,45 @@ import * as session from 'express-session';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
 
+import { configureExpressApp,
+         configurePassport,
+         bootstrapDB,
+         bootstrapApp,
+         setTemplateEngine,
+         configureRouter } from './helpers/app.helpers';
+
 import config from './config';
-// import router from './router/router.js';
-// import Strategies from './oauth/index';
-// import User from './models/User';
+import router from './router/router.js';
 
-class Server {
-    public static bootstrap(port = 3000): Server {
-        return new Server(port);
-    }
+import strategies from './oauth/index';
+import User from './models/User';
 
-    private static dataBase: mongoose.Connection = mongoose.connection;
+const app: express.Application = express();
 
-    public app: express.Application;
+bootstrapDB(mongoose, config.get('MONGO_PATH'), Promise);
 
-    constructor(public port: number) {
-        this.app = express();
-        this.runDB();
-        this.config();
-        this.passport();
-        this.routes();
-        this.run();
-    }
-
-    private runDB(): void {
-        (<any>mongoose).Promise = Promise;
-        mongoose.connect(config.get('MONGO_PATH'));
-    }
-
-    private config(): void {
-        this.app.use(logger('dev'));
-        this.app.use(cookieParser());
-        this.app.use(bodyParser.json());
-        this.app.use(bodyParser.urlencoded({ extended: true }));
-        this.app.use(express.static(path.join(__dirname, '../../public')));
-        this.app.use(session({
+configureExpressApp(
+    app,
+    [
+        logger('dev'),
+        cookieParser(),
+        bodyParser.json(),
+        bodyParser.urlencoded({ extended: true }),
+        express.static(path.join(__dirname, '../public')),
+        session({
             secret: 'keyboard cat',
             saveUninitialized: true,
             resave: true,
-        }));
+        }),
+        passport.initialize(),
+        passport.session(),
+    ]
+);
 
-        this.app.use(passport.initialize());
-        this.app.use(passport.session());
-        this.app.set('view engine', 'pug');
-        this.app.set('views', path.join(__dirname, '/views'));
-    }
+setTemplateEngine(app, 'pug', path.join(__dirname, '../src/server/views'));
 
-    private passport(): void {}
+configurePassport(passport, strategies, User);
 
-    private routes(): void {
-        const router = Routes.bootstrap().router;
-        this.app.use('/', router);
-    }
+configureRouter(app, router);
 
-    private run(): void {
-        this.app.listen(this.port, (err: any) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(`listening on ${ this.port }`);
-            }
-        });
-    }
-
-}
+bootstrapApp(app, 3000);
