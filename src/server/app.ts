@@ -32,11 +32,7 @@ configureExpressApp(
         bodyParser.json(),
         bodyParser.urlencoded({ extended: true }),
         express.static(path.join(__dirname, '../public')),
-        session({
-            secret: 'keyboard cat',
-            saveUninitialized: true,
-            resave: true,
-        }),
+        session(config.get('SESSION_OPTIONS')),
         passport.initialize(),
         passport.session(),
     ]

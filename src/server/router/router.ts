@@ -14,6 +14,11 @@ router.get('/login', (req: Request, res: Response) => {
     res.render('index');
 });
 
+router.get('/logout', (req: Request, res: Response) => {
+    req.logout();
+    res.redirect('/login');
+});
+
 router.get('/me', identificationController);
 
 router.get('*', indexController);
